@@ -4,6 +4,7 @@ import MariaDBHelper from "../modules/MariaDB-Helper";
 export class User extends Model {
 	public pid: number;
 	public email!: string;
+	public salt!: string;
 	public password!: string;
 }
 User.init(
@@ -14,6 +15,10 @@ User.init(
 			primaryKey: true,
 		},
 		email: {
+			type: Sequelize.STRING,
+			allowNull: false,
+		},
+		salt: {
 			type: Sequelize.STRING,
 			allowNull: false,
 		},
@@ -28,5 +33,5 @@ User.init(
 	}
 );
 User.sync().then(() => {
-	console.log("USER TABLE CREATED");
+	console.log("TABLE CREATED");
 });
